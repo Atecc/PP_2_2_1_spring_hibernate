@@ -1,16 +1,13 @@
 package hiber;
-
 import hiber.config.AppConfig;
 import hiber.model.Car;
 import hiber.model.User;
 import hiber.service.UserService;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
-
-import java.sql.SQLException;
 import java.util.List;
 
 public class MainApp {
-   public static void main(String[] args) throws SQLException {
+   public static void main(String[] args) {
       AnnotationConfigApplicationContext context =
               new AnnotationConfigApplicationContext(AppConfig.class);
 
@@ -22,13 +19,8 @@ public class MainApp {
       userService.add(new User("User4", "Lastname4", "user4@mail.ru", new Car("Bmw", 1)));
 
       List<User> users = userService.listUsers();
-      for (User currentUser : users) {
-         System.out.println("Id = " + currentUser.getId());
-         System.out.println("First Name = " + currentUser.getFirstName());
-         System.out.println("Last Name = " + currentUser.getLastName());
-         System.out.println("Email = " + currentUser.getEmail());
-         System.out.println();
-      }
+      users.forEach(currentUser -> System.out.printf("Id = %s\nFirst Name = %s\nLast Name = %s\nEmail = %s\n\n",
+              currentUser.getId(), currentUser.getFirstName(), currentUser.getLastName(), currentUser.getEmail()));
       System.out.println(userService.getUserByCarModelAndSeries("Li9",2));
       context.close();
    }
