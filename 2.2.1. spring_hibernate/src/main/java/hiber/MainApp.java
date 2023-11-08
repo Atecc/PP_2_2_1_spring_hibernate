@@ -19,8 +19,9 @@ public class MainApp {
       userService.add(new User("User4", "Lastname4", "user4@mail.ru", new Car("Bmw", 1)));
 
       List<User> users = userService.listUsers();
-      users.forEach(currentUser -> System.out.printf("Id = %s\nFirst Name = %s\nLast Name = %s\nEmail = %s\n\n",
-              currentUser.getId(), currentUser.getFirstName(), currentUser.getLastName(), currentUser.getEmail()));
+      for (User currentUser : users) {
+         System.out.println(currentUser.toString());
+      }
       System.out.println(userService.getUserByCarModelAndSeries("Li9",2));
       context.close();
    }
