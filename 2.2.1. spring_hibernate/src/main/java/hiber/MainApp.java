@@ -20,7 +20,7 @@ public class MainApp {
 
       List<User> users = userService.listUsers();
       for (User currentUser : users) {
-         System.out.println(currentUser.toString());
+         System.out.println(currentUser);
       }
       System.out.println(userService.getUserByCarModelAndSeries("Li9",2));
       context.close();
